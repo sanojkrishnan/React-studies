@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 
  //-------useState examples---------
 function App(){
@@ -46,4 +46,24 @@ const Increment =() => {
   )
 }
 
-export { App, DropDown };
+function Facts() {
+  const [fact, setFact] = useState();
+  const numberRef = useRef();
+  const getFact = async () => {
+    const number = numberRef.current.value;
+    const response = await fetch(`http://numbersapi.com/${number}`);  //fetch is a promise based API to fetch data from a URL
+    const factText = await response.text();
+    console.log(factText);
+    console.log(number);
+    setFact(factText);
+  };
+  return (
+    <div>
+      <input ref={numberRef} type="number" placeholder="Enter a number"/>
+      <button onClick={getFact}>Get Fact</button>
+      {fact && <p>Fact: {fact}</p>}
+    </div>
+  )
+}
+
+export { App, DropDown, Facts };

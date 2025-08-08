@@ -1,10 +1,11 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import{ App, DropDown} from './App.jsx'
+import{ App, DropDown, Facts} from './App.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <App />
     <DropDown />
+    <Facts />
   </StrictMode>,
 )
